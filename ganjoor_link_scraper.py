@@ -45,3 +45,6 @@ while flag:
 
 for url in links:
   print(url)
+  with open('links.txt','w') as f:
+    for link in soup.find_all(rel="bookmark"):
+        f.write(link.get('href'))
