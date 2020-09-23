@@ -27,7 +27,7 @@ source_code = requests.get('https://ganjoor.net/')
 soup = BeautifulSoup(source_code.content, 'lxml')
 data = []
 links = []
-url_layers_dept=106
+url_layers_dept=36
 
 def remove_duplicates(l): # remove duplicates and unURL string
     for item in l:
@@ -112,7 +112,8 @@ for i in range(num_lines):
 
     for track in audio_tracks:
         print(f"Fetching track: {track}...")
-        with requests.get(track, stream=True) as t, \
+        with requests.get(track, 
+        stream=True) as t, \
                 open(track.split("/")[-1], "wb") as a:
             copyfileobj(t.raw, a)
 EOF
@@ -120,9 +121,7 @@ EOF
 chmod 755 ganjoor_link_scraper1.py
 
 
-
-
-python3  ganjoor_link_scraper1.py >ganjoor_link_scraper1_log.txt
+python3  ganjoor_link_scraper1.py 2>&1 | tee ganjoor_link_scraper1.log
 
 zip -r  ganjor_Audio_text_files.zip ./*
 mv  ganjor_Audio_text_files.zip ganjor_Audio_text_files.zip1
