@@ -12,7 +12,7 @@ git clone https://github.com/So-AI-love/Persian-text-to-speech/
 cd Persian-text-to-speech/Ganjoor_scraper
 
 mkdir ganjor_Audio_text_files
-cp -r ganjoor_link_scraper.py ./ganjor_Audio_text_files/
+cp -r ../ganjoor_link_scraper.py ./ganjor_Audio_text_files/
 cd ganjor_Audio_text_files
 
 
