@@ -44,7 +44,16 @@ It will automatically scrap the '--url' with dept layer of :
 ```
 And Upload its data to `https://transfer.sh/!!!/ganjor_Audio_text_files.zip1 `, which `!!!` text would be declared by the output of curl function
 
-Or all will be done by this defaults:
+Or all will be done, By running these commands in Docker server:
+
+```
+git clone https://github.com/So-AI-love/Persian-text-to-speech/
+cd Persian-text-to-speech/Ganjoor_scraper
+chmod -755 ./Docker_ganjoor_scraper.sh
+./Docker_ganjoor_scraper.sh
+
+```
+By these defaults:
 
 ```
 --url "https://ganjoor.net"
@@ -52,18 +61,6 @@ Or all will be done by this defaults:
 --layers_dept2 20 
 --layers_dept3 1
 ```
-
-
-By running these commands in Docker server:
-
-```
-git clone https://github.com/So-AI-love/Persian-text-to-speech/
-cd Persian-text-to-speech/Ganjoor_scraper
-
-./Docker_ganjoor_scraper.sh
-
-```
-
 
   [1]: https://labs.play-with-docker.com/
   [2]: https://i.stack.imgur.com/aYqdN.png
