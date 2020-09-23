@@ -9,10 +9,12 @@ pip install auto-py-to-exe
 pip install bs4 scrapy requests
 
 git clone https://github.com/So-AI-love/Persian-text-to-speech/
-cd Persian-text-to-speech/
+cd Persian-text-to-speech/Ganjoor_scraper
 
 mkdir ganjor_Audio_text_files
+cp -r ganjoor_link_scraper.py ./ganjor_Audio_text_files/
 cd ganjor_Audio_text_files
+
 
 cat <<EOF > ganjoor_link_scraper1.py
 #!/usr/bin/python
@@ -47,7 +49,7 @@ def remove_duplicates(l,links):  # remove duplicates and unURL string
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Import settings something.")
-    parser.add_argument("--layers_dept1", type=int, default=10, required=False)
+    parser.add_argument("--layers_dept1", type=int, default=1000, required=False)
     parser.add_argument("--layers_dept2", type=int, default=12, required=False)
     parser.add_argument("--layers_dept3", type=int, default=12, required=False)
     parser.add_argument("--url", type=str, default='https://ganjoor.net/asadi', required=False)
@@ -144,12 +146,13 @@ if __name__ == '__main__':
 
     main(args,links)
 
+
 EOF
 
 chmod 755 ganjoor_link_scraper1.py
 
 
-python3  ganjoor_link_scraper1.py 2>&1 | tee ganjoor_link_scraper1.log
+python3  ganjoor_link_scraper.py 2>&1 | tee ganjoor_link_scraper1.log
 
 zip -r  ganjor_Audio_text_files.zip ./*
 mv  ganjor_Audio_text_files.zip ganjor_Audio_text_files.zip1
