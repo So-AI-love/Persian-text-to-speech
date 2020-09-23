@@ -14,7 +14,7 @@ apk add py-pip libxml2-dev libxslt-dev   py3-lxml zip wget
 
 pip install gevent --pre
 pip install auto-py-to-exe
-pip install bs4 scrapy requests
+pip install bs4 scrapy requests tldextract
 
 git clone https://github.com/So-AI-love/Persian-text-to-speech/
 cd Persian-text-to-speech/Ganjoor_scraper
