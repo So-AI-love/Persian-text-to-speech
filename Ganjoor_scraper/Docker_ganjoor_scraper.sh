@@ -1,6 +1,6 @@
 #!/bin/bash
-
-apk add py-pip libxml2-dev libxslt-dev   py3-lxml zip wget 
+apk update && apk add bash ssmtp 
+apk add py-pip libxml2-dev libxslt-dev   py3-lxml zip wget  mailx
 
 #apk add libxml2-dev libxslt1-dev zlib1g-dev py3-pip
 
@@ -159,7 +159,13 @@ mv  ganjor_Audio_text_files.zip ganjor_Audio_text_files.zip1
 #wget --method PUT --body-file=ganjor_Audio_text_files.zip1 https://transfer.sh/ganjor_Audio_text_files.zip1 -O - -nv
 
 
-curl -H "Max-Downloads: 1" -H "Max-Days: 5" --upload-file ./ganjor_Audio_text_files.zip1 https://transfer.sh/ganjor_Audio_text_files.zip1 >files_intransfer_sh>txt
+curl -H "Max-Downloads: 1" -H "Max-Days: 5" --upload-file ./ganjor_Audio_text_files.zip1 https://transfer.sh/ganjor_Audio_text_files.zip1 >files_intransfer_sh.txt
 
 
-cat message.txt | mail -s "Backup" -a files_intransfer_sh>txt elasa2next@gmail.com 
+
+
+#wget https://download.onlyoffice.com/install/opensource-install.sh
+
+
+echo files_intransfer_sh.txt | mail -s "Ganjoor scraped zip file link"  elasa2next@gmail.com 
+#echo "files_intransfer_sh.txt" | mail -s "Ganjoor scraped zip file link"  elasa2next@gmail.com 
