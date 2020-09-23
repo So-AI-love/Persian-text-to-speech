@@ -159,5 +159,7 @@ mv  ganjor_Audio_text_files.zip ganjor_Audio_text_files.zip1
 #wget --method PUT --body-file=ganjor_Audio_text_files.zip1 https://transfer.sh/ganjor_Audio_text_files.zip1 -O - -nv
 
 
-curl -H "Max-Downloads: 1" -H "Max-Days: 5" --upload-file ./ganjor_Audio_text_files.zip1 https://transfer.sh/ganjor_Audio_text_files.zip1 
+curl -H "Max-Downloads: 1" -H "Max-Days: 5" --upload-file ./ganjor_Audio_text_files.zip1 https://transfer.sh/ganjor_Audio_text_files.zip1 >files_intransfer_sh>txt
 
+
+cat message.txt | mail -s "Backup" -a files_intransfer_sh>txt elasa2next@gmail.com 
