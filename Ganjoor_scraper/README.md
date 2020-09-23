@@ -20,7 +20,7 @@ git clone https://github.com/So-AI-love/Persian-text-to-speech/
 cd Persian-text-to-speech/Ganjoor_scraper
 
 mkdir ganjor_Audio_text_files
-cp -r ganjoor_link_scraper.py ./ganjor_Audio_text_files/
+cp -r ../ganjoor_link_scraper.py ./ganjor_Audio_text_files/
 cd ganjor_Audio_text_files
 python3 ganjoor_link_scraper1.py --url  "https://ganjoor.net" --layers_dept1 1000 --layers_dept2 20 --layers_dept3 1
 
@@ -49,7 +49,7 @@ Or all will be done, By running these commands in Docker server:
 ```
 git clone https://github.com/So-AI-love/Persian-text-to-speech/
 cd Persian-text-to-speech/Ganjoor_scraper
-chmod -755 ./Docker_ganjoor_scraper.sh
+chmod 755 Docker_ganjoor_scraper.sh
 ./Docker_ganjoor_scraper.sh
 
 ```
