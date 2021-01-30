@@ -18,10 +18,8 @@ from tqdm import tqdm
 
 '''
 if you're not sure how to structure your tensorFlow model especially when it comes to working with multiple graphs in TensorFlow I highly recommend reading the following blog posts,they help you to tease out the TensorFlow Graph Mess.(at least you wouldn't get lost when you look through your TensorBoard graph)
-
 [1]https://danijar.com/structuring-your-tensorflow-models/
 [2]https://gist.github.com/Breta01/cabbb5c7d9bbd3d9b4ec404828ac24bb
-
 '''
 class model(object):
     def __init__(self, data_path,mode):
@@ -121,17 +119,17 @@ class model(object):
             self.mels = tf.placeholder(tf.float32, shape=(None, None, HP.n_mels))
             L=embeding_layer(inputtextids=self.INP,emdeding_size=HP.embeding_num_units,
                              vocab_size=len(HP.persianvocab),scope_name="embeding")
-            with tf.variable_scope("Text_Encoder"):
+            with tf.variable_scope("Text_Encoder",reuse=tf.AUTO_REUSE):
                 K,V = textencoder(embeding_tensor=L,dropout_rate=HP.dropout_rate,num_hidden_layers=HP.d)
                 
-            with tf.variable_scope("Audio_Encoder"):
+            with tf.variable_scope("Audio_Encoder",reuse=tf.AUTO_REUSE):
                 Q = audioencoder(input_tensor=self.mels,dropout_rate=HP.dropout_rate,num_hidden_layers=HP.d)
 
-            with tf.variable_scope("Attention"):
+            with tf.variable_scope("Attention",reuse=tf.AUTO_REUSE):
                 R,A = attention(K,V, Q,HP.d)
-            with tf.variable_scope("Audio_Decoder"):
+            with tf.variable_scope("Audio_Decoder",reuse=tf.AUTO_REUSE):
                 Ylogit, self.Y = audiodecoder(R,dropout_rate=HP.dropout_rate ,num_hidden_layers=HP.d,num_mels=HP.n_mels) 
-            with tf.variable_scope('Super_Resolution_Network'):
+            with tf.variable_scope('Super_Resolution_Network',reuse=tf.AUTO_REUSE):
                 logits,self.Z=super_resolution(input_tensor=self.Y ,dropout_rate=
                                                     HP.dropout_rate,num_hidden_layers=HP.c,n_fft=HP.n_fft)
             self.sess=tf.Session()
@@ -142,10 +140,10 @@ class model(object):
             superresolution_vars = tf.get_collection(tf.GraphKeys.TRAINABLE_VARIABLES, 'Super_Resolution_Network')
 
             sv1 = tf.train.Saver(var_list=text2sp_vars)
-            sv1.restore(self.sess, tf.train.latest_checkpoint('logs/text-to-spec'))
+            sv1.restore(self.sess, tf.train.latest_checkpoint('/content/Persian-text-to-speech/logs'))
 
             sv2 = tf.train.Saver(var_list=superresolution_vars)
-            sv2.restore(self.sess, tf.train.latest_checkpoint('logs/super_resolution'))
+            sv2.restore(self.sess, tf.train.latest_checkpoint('/content/Persian-text-to-speech/logs'))
             print('model loaded :)')
         tf.summary.merge_all()
     
