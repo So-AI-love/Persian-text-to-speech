@@ -2,7 +2,7 @@ import tensorflow as tf
 from layers import conv1d,highwaynet
 
 def embeding_layer(inputtextids,vocab_size,emdeding_size,scope_name,padding=False):
-    with tf.variable_scope(scope_name,reuse=None):
+    with tf.variable_scope(scope_name,reuse=tf.AUTO_REUSE):
         table=tf.get_variable(
             "table",
             shape=[vocab_size,emdeding_size],
